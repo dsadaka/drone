@@ -35,6 +35,7 @@ Imagine three lines running through an airplane and intersecting at right angles
 
 ### To Simplify
 - Pitch is aligned to the x axis
+- roll is aligned to the y axis
 
 ### FUNCTIONS:
 
@@ -43,7 +44,6 @@ Imagine three lines running through an airplane and intersecting at right angles
 | take_off     | increase speed of all rotors while maintaining while staying level |
 | rotate left  | increase speed of the two CW turning engines                       |
 | rotate right | increase speed of the two CCW turning engines                      |
-| move forward | increase speed of back motor and lower speed of front motor        |
 | move left    | increase speed of two CW turning motors                            |
 | move right   | increase speed of two CCW turning motors                           |
 | move back    | increase speed of front motor, decrease speed of back motor        |
@@ -54,7 +54,7 @@ Imagine three lines running through an airplane and intersecting at right angles
 
 ## IMPLEMENTATION
 
-The controller cannot blindly send commands to the drone.  Realworld external forces act upon the craft so it's not a perfect world.  As opposed to performing complicated calculations connecting power, weight, blade spin rates, gravity, etc, a feedback loop is implemented that compares the requested command (target) with the input from the sensors.  This is called the PID process (Proportional, Integral, Differential). It rapidly re-estimates the current best guess output.
+The controller cannot blindly send commands to the drone.  In the real world, external forces act upon the craft.  As opposed to performing complicated calculations connecting power, weight, blade spin rates, gravity, etc, a feedback loop is implemented that compares the requested command (target) with the input from the sensors.  This is called the PID process (Proportional, Integral, Differential). It rapidly re-estimates the current best guess output.
 
 ### PID
 
@@ -87,3 +87,13 @@ to produce a predictive approach to error correction.
 The results of all three are added together to give an
 overall output and then, depending on the purpose of
 the PID, applied to each of the motors appropriately.
+
+### SENSORS
+
+The input referred to above comes from two sensors: gyroscope and accelerometer.  
+
+#### Gyroscope
+A gyroscope rotor spins and maintains it's position within a "cage", as the vehicle moves (rolls, pitches, yaws) around the cage, the gyro "senses" this movement.  It can then output the rate of rotation, degree of tilt, and angular velocity of the drone. Our simplifed gyroscope simply outputs 3 velocity vectors (x, y and z).  These vectors go to zero when the drone stops rotating.  Gyroscopes, however, cannot detect linear movement.
+
+#### Orientation Sensor 
+Most modern day drones use an inertial measurement unit (IMU) to provide orientation. It ensures that the drone maintains its orientation towards the ground by itself and does not drift.  This device combines a gyro, accelerometer and magnetometer (and/or GPS) to determine orientation and velocity vector relative to the earth.  Each of these components have the their strengths and weaknesses but the IMU is smart enough to use their respective strengths to overcome these weaknesses.
