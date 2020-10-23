@@ -57,6 +57,8 @@ Imagine three lines running through an airplane and intersecting at right angles
 
 ### USAGE
 
+Dependencies:  ruby >= 2.5
+
 Open first terminal window and enter the following commands
 
 1. git@github.com:dsadaka/drone.git       # Clone this repo to a new directory
