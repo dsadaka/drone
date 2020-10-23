@@ -1,7 +1,7 @@
 # drone
 Control a quadcopter robot
 
-The request was made to write controlling software for a quadcopter drone.  This repo is not a fully functioning system, but more of a demonstration of how to approach this task.
+The request was made to write controlling software for a quadcopter drone.  Since this code was not written to control any specific hardware, it is not fully a functional system, but more of a demonstration of how to approach this task.  Further down, this README describes how a real controller could be implemented.
 
 ## BACKGROUND
 ### How it moves
@@ -51,7 +51,34 @@ Imagine three lines running through an airplane and intersecting at right angles
 | stabilize    | set all motors to same speed                                       |
 | status       | return current status off, hovering, moving, takeoff               |
 | land         | stabilize and slowly lower to ground                               |
+| tap          | simulates a hand tap.  The drone attempts to restabilize           |
+| break_engine | simulates a failed engine.  Error prints on server and drone langs |
 
+### USAGE
+
+Open first terminal window and enter the following commands
+
+1. git@github.com:dsadaka/drone.git       # Clone this repo to a new directory
+2. cd drone
+3. gem install drone-0.1.0.gem
+4. drone server                           # Start server (simulates drone)
+
+Open second terminal window
+
+1. cd <directory created above>
+2. drone console
+     You should see "Ready to receive drone commands. Type "exit" to quit.
+     Enter connect to connect to server
+     You should see Ready to fly!
+     Now enter any of the functions listed above, starting with "take_off"
+     
+     Successful command will return a true status (in blue)
+     Errors return a red message.  Ex:  Trying to take_off when you're already flying
+     The current state of the drone is also displayed.
+     
+     You can also keep an eye on the server terminal window for log output and distress signals.
+
+#### Have fun!
 ## IMPLEMENTATION
 
 The controller cannot blindly send commands to the drone.  In the real world, external forces act upon the craft.  As opposed to performing complicated calculations connecting power, weight, blade spin rates, gravity, etc, a feedback loop is implemented that compares the requested command (target) with the input from the sensors.  This is called the PID process (Proportional, Integral, Differential). It rapidly re-estimates the current best guess output.
