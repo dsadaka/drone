@@ -127,3 +127,14 @@ A gyroscope rotor spins and maintains it's position within a "cage", as the vehi
 
 #### Orientation Sensor 
 Most modern day drones use an inertial measurement unit (IMU) to provide orientation. It ensures that the drone maintains its orientation towards the ground by itself and does not drift.  This device combines a gyro, accelerometer and magnetometer (and/or GPS) to determine orientation and velocity vector relative to the earth.  Each of these components have the their strengths and weaknesses but the IMU is smart enough to use their respective strengths to overcome these weaknesses.
+
+## References: 
+https://howthingsfly.si.edu/flight-dynamics/roll-pitch-and-yaw
+https://diydrones.com/profiles/blogs/faq-whats-the-difference
+https://github.com/blacktm/tello
+https://www.raspberrypi.org/magpi-issues/MagPi19.pdf
+https://github.com/PiStuffing/Quadcopter
+
+
+Also purchased a Ryze Tello to get a hands-on feel.  I totally recommend this model if you're a beginner like I was.  It's under $200 including the separate controller but it includes DJI electronics for a smooth, easy ride.
+
