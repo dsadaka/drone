@@ -43,12 +43,12 @@ Imagine three lines running through an airplane and intersecting at right angles
 |  function    | Performed By                                                       |
 | ----------   | ------------------------------------------------------------------ |
 | take_off     | increase speed of all rotors while maintaining while staying level |
-| rotate left  | increase speed of the two CW turning engines                       |
-| rotate right | increase speed of the two CCW turning engines                      |
-| move left    | increase speed of two CW turning motors                            |
-| move right   | increase speed of two CCW turning motors                           |
-| move back    | increase speed of front motor, decrease speed of back motor        |
-| move forward | increase speed of back motor and lower speed of front motor        |
+| rotate_left  | increase speed of the two CW turning engines                       |
+| rotate_right | increase speed of the two CCW turning engines                      |
+| move_left    | increase speed of two CW turning motors                            |
+| move_right   | increase speed of two CCW turning motors                           |
+| move_back    | increase speed of front motor, decrease speed of back motor        |
+| move_forward | increase speed of back motor and lower speed of front motor        |
 | stabilize    | set all motors to same speed                                       |
 | status       | return current status off, hovering, moving, takeoff               |
 | land         | stabilize and slowly lower to ground                               |
