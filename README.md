@@ -130,9 +130,13 @@ Most modern day drones use an inertial measurement unit (IMU) to provide orienta
 
 ## References: 
 https://howthingsfly.si.edu/flight-dynamics/roll-pitch-and-yaw
+
 https://diydrones.com/profiles/blogs/faq-whats-the-difference
+
 https://github.com/blacktm/tello
+
 https://www.raspberrypi.org/magpi-issues/MagPi19.pdf
+
 https://github.com/PiStuffing/Quadcopter
 
 
