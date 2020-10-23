@@ -1,5 +1,6 @@
 # Drone::Client
 require 'socket'
+require 'json'
 
 module Drone
   module Client
@@ -51,8 +52,6 @@ module Drone
           puts "connected!"
         end
 
-        @state = Drone::State.new
-
         # Drone should be connected over wifi and UDP
         @connected = true
 
@@ -72,10 +71,6 @@ module Drone
       # Disconnect the Drone
       def disconnect
         return false unless @connected
-        unless Drone.testing
-          @state.exit
-          @ping.exit
-        end
         @client.close
         @client = nil
         @connected = false
@@ -102,19 +97,41 @@ module Drone
         @client.recv(256).strip
       end
 
-      # Change 'ok' and 'error' to boolean response instead
-      def return_bool(res)
-        case res
+      # Use for commands that return an unsolicited response
+      def return_wo_response(res)
+        resh = JSON.parse(res).transform_keys(&:to_sym)
+        case resh[:status]
         when 'ok'
-          true
+          puts "State: #{resh[:state].transform_keys(&:to_sym)}}"
         when 'error'
-          false
+          puts "error: #{resh[:response]}".error, "State: #{resh[:state].transform_keys(&:to_sym)}}"
+        else
+          res
         end
+        resh[:status] == 'ok'
+      end
+
+      # Use for commands where a response is requested (e.g. status)
+      def return_w_response(res)
+        resh = JSON.parse(res).transform_keys(&:to_sym)
+        case resh[:status]
+        when 'ok'
+          puts "#{resh[:response].transform_keys(&:to_sym) rescue resh[:response]}".green
+        when 'error'
+          puts "error: #{resh[:response]}".error, "State: #{resh[:state].transform_keys(&:to_sym)}}"
+        else
+          res
+        end
+        resh[:status] == 'ok'
       end
 
       # Change string to number response instead
       def return_num(res)
         if res then res.to_i else res end
+      end
+
+      def return_string(res)
+        JSON.parse(res) rescue res
       end
 
     end

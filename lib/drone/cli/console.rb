@@ -9,9 +9,12 @@ end
 
 puts "Ready to receive Drone commands. Type \"exit\" to quit."
 
-# if system('pry -v &>/dev/null')
-#   system("pry -r #{r_module}")
-# else
-#   system("irb -r #{r_module}")
-# end
-require r_module
+# When running as gem
+if system('pry -v &>/dev/null')
+  system("pry -r #{r_module}")
+else
+  system("irb -r #{r_module}")
+end
+
+# For local dev
+# require r_module

@@ -36,11 +36,18 @@ module Drone
     end
 
     # Takeoff and land
-    [:take_off, :land, :hover, :stabilize, :status].each do |cmd|
+    [:take_off, :land, :hover, :stabilize, :tap, :break_engine].each do |cmd|
       define_method cmd do
-        Drone::Client.return_bool send("#{cmd.to_s}")
+        Drone::Client.return_wo_response send("#{cmd.to_s}")
       end
     end
+
+    [:status].each do |cmd|
+      define_method cmd do
+        Drone::Client.return_w_response send("#{cmd.to_s}")
+      end
+    end
+
 
     # binding.pry
 
@@ -48,7 +55,7 @@ module Drone
     [:move_up, :move_down, :move_left, :move_right, :move_forward, :move_back].each do |cmd|
       define_method cmd do |x|
         if in_move_range? x
-          Drone::Client.return_bool send("#{cmd.to_s} #{x}")
+          Drone::Client.return_wo_response send("#{cmd.to_s} #{x}")
         else
           puts "Movement must be between 20..500 cm"
         end
@@ -58,10 +65,10 @@ module Drone
     # Turn clockwise or counterclockwise
     [:rotate_right, :rotate_left].each do |cmd|
       define_method cmd do |x|
-        if (1..3600).include? x
-          Drone::Client.return_bool send("#{cmd.to_s} #{x}")
+        if (1..360).include? x
+          Drone::Client.return_wo_response send("#{cmd.to_s} #{x}")
         else
-          puts "Rotation must be between 1..3600 degrees"
+          puts "Rotation must be between 1..360 degrees"
         end
       end
     end

@@ -19,13 +19,9 @@ module Drone
   end
 end
 
-GRAVITY_ACCEL = 9.8
-
 require 'drone/colorize'
-require 'drone/state'
 require 'drone/client'
 require 'drone/dsl'
-require 'drone/action'
 
 # Add DSL
 extend Drone::DSL
