@@ -49,7 +49,7 @@ Imagine three lines running through an airplane and intersecting at right angles
 | move back    | increase speed of front motor, decrease speed of back motor        |
 | move forward | increase speed of back motor and lower speed of front motor        |
 | stabilize    | set all motors to same speed                                       |
-| status       | return current roll, pitch and yaw                                 |
+| status       | return current status off, hovering, moving, takeoff               |
 | land         | stabilize and slowly lower to ground                               |
 
 ## IMPLEMENTATION
