@@ -59,17 +59,18 @@ Imagine three lines running through an airplane and intersecting at right angles
 
 Dependencies:  ruby >= 2.5
 
-Open first terminal window and enter the following commands
-
+Open first terminal window and enter the following commands to start the server
+```
 1. git clone git@github.com:dsadaka/drone.git       # Clone this repo to a new directory
 2. cd drone
 3. gem install drone-0.1.0.gem
 4. drone server                           # Start server (simulates drone)
-
+```
 Open second terminal window
 
-1. cd <directory created above>
+1. cd /path/to/directorycreatedabove
 2. drone console
+
      You should see "Ready to receive drone commands. Type "exit" to quit."
      Enter connect to connect to server
      You should see Ready to fly!
