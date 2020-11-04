@@ -66,10 +66,11 @@ Open first terminal window and enter the following commands to start the server
 3. gem install drone-0.1.0.gem
 4. drone server                           # Start server (simulates drone)
 ```
-Open second terminal window
-
+Open second terminal window to run the console
+```
 1. cd /path/to/directorycreatedabove
 2. drone console
+```
 
      You should see "Ready to receive drone commands. Type "exit" to quit."
      Enter connect to connect to server
